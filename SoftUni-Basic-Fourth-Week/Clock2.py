@@ -1,9 +1,8 @@
 import time
 
-hour = 23
-minute = 59
-second = 40
-
+hour = 0
+minute = 0
+second = 0
 
 while (hour < 24):
     second += 1
