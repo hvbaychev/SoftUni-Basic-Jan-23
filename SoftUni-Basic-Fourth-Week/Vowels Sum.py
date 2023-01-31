@@ -1,17 +1,16 @@
 line = input().lower()
 sum_vowels = 0
 
-for x in line:
-    if x == 'a':
+for cycle in line:
+    if cycle == 'a':
         sum_vowels += 1
-    elif x == 'e':
+    elif cycle == 'e':
         sum_vowels += 2
-    elif x == 'i':
+    elif cycle == 'i':
         sum_vowels += 3
-    elif x == 'o':
+    elif cycle == 'o':
         sum_vowels += 4
-    elif x == 'u':
+    elif cycle == 'u':
         sum_vowels += 5
 
 print(sum_vowels)
-

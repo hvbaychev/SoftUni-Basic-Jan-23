@@ -1,32 +1,26 @@
 capacity = int(input())
-
 ticket_price = 5
-sum_ticket_price = 0
-sum_entrance_people = 0
-entrance_people = ''
+total_sum = 0
+sum_people = 0
+cinema = 'true'
 
-while True:
-    entrance_people = input()
-    if entrance_people == 'Movie time!':
-        diff = abs(capacity - sum_entrance_people)
-        print(f"There are {diff} seats left in the cinema.")
-        print(f"Cinema income - {sum_ticket_price} lv.")
-        break
-    ent_int_people = int(entrance_people)
-
-    sum_entrance_people += ent_int_people
-    sum_ticket_price += ent_int_people * ticket_price
-
-    if ent_int_people % 3 == 0:
-        sum_ticket_price = sum_ticket_price - 5
-
-    if sum_entrance_people + ent_int_people > capacity:
-        print("The cinema is full.")
-        print(f"Cinema income - {sum_ticket_price} lv.")
+command = input()
+while command != 'Movie time!':
+    entrance_people = int(command)
+    if sum_people + entrance_people > capacity:
+        cinema = 'false'
         break
 
-    if sum_entrance_people == capacity:
-        diff = abs(sum_entrance_people - capacity)
-        print(f"There are {diff} seats left in the cinema.")
-        print(f"Cinema income - {sum_ticket_price} lv.")
-        break
+    sum_people += entrance_people
+
+    total_sum += ticket_price * entrance_people
+
+    if entrance_people % 3 == 0:
+        total_sum = total_sum - 5
+
+    command = input()
+
+if cinema == 'false':
+    print(f"The cinema is full.\nCinema income - {total_sum:.0f} lv.")
+else:
+    print(f"There are {capacity - sum_people} seats left in the cinema.\nCinema income - {total_sum:.0f} lv.")
