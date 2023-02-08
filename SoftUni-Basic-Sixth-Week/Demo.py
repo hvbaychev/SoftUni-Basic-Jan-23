@@ -1,31 +1,43 @@
-amount_bottles = int(input()) * 750
-reloading = 0
-dishes = 0
-pots = 0
-command = None
-cycles = 0
-ml = 0
+import string
 
-while amount_bottles >= 0:
-    command = input()
+main_string = string.ascii_letters
+first_word = ''
+final_string = ''
 
-    if command == "End":
-        if amount_bottles >= 0:
-            print("Detergent was enough!")
-            print(f"{dishes} dishes and {pots} pots were washed.")
-            print(f"Leftover detergent {amount_bottles} ml.")
-            break
-        else:
-            print(f"Not enough detergent, {abs(amount_bottles)} ml. more necessary!")
-            break
-    cycles += 1
-    if cycles == 3:
-        amount_bottles -= int(command) * 15
-        pots += int(command)
-        cycles = 0
+c_counter = 0
+o_counter = 0
+n_counter = 0
+
+
+letter = input()
+
+while letter != "End":
+
+    if letter == 'C' or letter == 'c' and c_counter == 0:
+        c_counter += 1
+    elif letter == 'O' or letter == 'o' and o_counter == 0:
+        o_counter += 1
+    elif letter == 'N' or letter == 'n' and n_counter == 0:
+        n_counter += 1
     else:
-        amount_bottles -= int(command) * 5
-        dishes += int(command)
+        first_word += letter
 
-else:
-    print(f"Not enough detergent, {abs(amount_bottles)} ml. more necessary!")
+    if c_counter > 1:
+        first_word += letter
+    elif o_counter > 1:
+        first_word += letter
+    elif n_counter > 1:
+        first_word += letter
+
+    if c_counter == 1 and o_counter == 1 and n_counter == 1:
+        first_word += ' '
+        final_string += first_word
+        first_word = ''
+        c_counter = 0
+        o_counter = 0
+        n_counter = 0
+        letter_count = 0
+
+    letter = input()
+
+print(final_string)
