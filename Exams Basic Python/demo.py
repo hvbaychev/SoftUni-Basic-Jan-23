@@ -1,37 +1,41 @@
-movie_counter = 0
-winner_movie = 0
-winner_name = ''
-total_points = 0
-while True:
-    movie = input()
+fruit = input()
+pack = input()
+pack_num = int(input())
 
-    if movie == 'STOP':
-        print(f"The best movie for you is {winner_name} with {winner_movie} ASCII sum.")
-        break
+price = 0
+discount = 0
+final_price = 0
 
-    movie_counter += 1
+if fruit == "Watermelon":
+    if pack == "small":
+        price = 56.00 * 2
+    elif pack == "big":
+        price = 28.70 * 5
+elif fruit == "Mango":
+    if pack == "small":
+        price = 36.66 * 2
+    elif pack == "big":
+        price = 19.60 * 5
+elif fruit == "Pineapple":
+    if pack == "small":
+        price = 42.10 * 2
+    elif pack == "big":
+        price = 24.80 * 5
+else:
+    if pack == "small":
+        price = 20.00 * 2
+    elif pack == "big":
+        price = 15.20 * 5
 
-    if movie_counter == 7:
-        print(f"The limit is reached.")
-        print(f"The best movie for you is {winner_name} with {winner_movie} ASCII sum.")
-        break
+price_to_pay = price * pack_num
 
-    movie_points = 0
-    points = 0
+if 400 <= price_to_pay <= 1000:
+    discount = price_to_pay * 0.15
+    final_price = price_to_pay - discount
+elif price_to_pay > 1000:
+    discount = price_to_pay * 0.50
+    final_price = price_to_pay - discount
+else:
+    final_price = price_to_pay
 
-    for char in movie:
-        ascii_value = ord(char)
-
-        if 'a' <= char <= 'z':
-            points = ascii_value - (2 * len(movie))
-            movie_points += points
-        elif 'A' <= char <= 'Z':
-            points = ascii_value - len(movie)
-            movie_points += points
-        else:
-            points = ascii_value
-            movie_points += ascii_value
-
-    if movie_points > winner_movie:
-        winner_movie = movie_points
-        winner_name = movie
+print(f"{final_price:.2f} lv.")
