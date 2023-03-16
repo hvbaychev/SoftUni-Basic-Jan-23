@@ -1,23 +1,22 @@
-import sys
-max_score = - sys.maxsize
-current_name = ''
-max_name = ''
-hat_trick = False
-name = input()
+def is_prime(n):
+    if n < 2:
+        return False
+    for i in range(2, int(n ** 0.5) + 1):
+        if n % i == 0:
+            return False
+    return True
 
-while name != 'END':
-    goal = int(input())
-    current_name = name
-    if goal > max_score:
-        max_score = goal
-        max_name = name
-    if goal >= 10:
-        break
-    name = input()
-print(f'{max_name} is the best player!')
-if max_score >= 3:
-    print(f'He has scored {max_score} goals and made a hat-trick !!!')
-elif max_score < 3:
-    print(f'He has scored {max_score} goals.')
+n = int(input())
+prime_count = 0
 
+for i in range(1, n+1):
+    if is_prime(i):
+        prime_count += 1
+        for j in range(1, i+1):
+            if is_prime(j):
+                print(1, end='')
+            else:
+                print(0, end='')
+        print()
 
+print()
